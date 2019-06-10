@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DetailsComponent } from './details.component';
+import { StockDetailsComponent } from 'src/app/components/stock-details/stock-details.component';
+import { TransactionGridComponent } from 'src/app/components/transaction-grid/transaction-grid.component';
+import { StockGraphComponent } from 'src/app/components/stock-graph/stock-graph.component';
+import { RouterModule } from '@angular/router';
 
 describe('DetailsComponent', () => {
   let component: DetailsComponent;
@@ -8,9 +12,9 @@ describe('DetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DetailsComponent ]
-    })
-    .compileComponents();
+      declarations: [DetailsComponent, StockDetailsComponent, StockGraphComponent, TransactionGridComponent],
+      imports: [RouterModule.forRoot([])]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
