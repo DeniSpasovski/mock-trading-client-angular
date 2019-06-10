@@ -6,9 +6,12 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "prod": "ng serve --prod --aot",
+    "build": "ng build --aot && npm run package",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "package": "cd dist && bestzip app-package.zip mock-trading-server-angular/*",
+    "run-test": "ng test",
+    "test": "ng test --watch=false --codeCoverage=true"
   },
   "private": true,
   "dependencies": {
@@ -30,6 +33,7 @@
     "@angular/compiler-cli": "~12.0.4",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
+    "bestzip": "^2.1.5",
     "jasmine-core": "~3.7.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
