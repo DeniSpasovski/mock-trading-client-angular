@@ -1,1 +1,281 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+    font-family: "Calibri", Arial, sans-serif;
+    font-size: 12px;
+    line-height: 16px;
+    margin: 0 20px;
+    padding: 0;
+}
+
+a,
+a:link,
+a:hover,
+a:visited,
+a:active,
+a:focus {
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a:hover,
+a:active {
+    color: #4472c4;
+    cursor: pointer;
+}
+
+.modal {
+    bottom: 0;
+    display: none;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.modal__overlay {
+    background-color: #333333;
+    bottom: 0;
+    cursor: pointer;
+    height: 100%;
+    left: 0;
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0.9;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 101;
+}
+
+.modal__content {
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    left: calc(50% - 100px);
+    opacity: 1;
+    padding: 25px;
+    position: absolute;
+    top: calc(50% - 100px);
+    z-index: 102;
+}
+
+.modal__content--large {
+    left: calc(50% - 120px);
+    width: 240px;
+}
+
+.modal__close {
+    background-color: #333333;
+    border: 2px solid #FFFFFF;
+    border-radius: 20px;
+    color: #FFFFFF;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    height: 11px;
+    line-height: 6px;
+    padding: 10px;
+    position: absolute;
+    right: -16px;
+    top: -16px;
+}
+
+.modal__h2 {
+    margin-top: 0;
+    padding: 0;
+}
+
+.modal__dropdown {
+    margin-top: 3px;
+    padding: 1px;
+}
+
+.modal__number-box {
+    border: 1px solid #999999;
+    border-radius: 2px;
+    margin-left: 2px;
+    padding: 2px;
+    width: 95px;
+}
+
+.modal__btn {
+    background-color: #70AD47;
+    border: 0;
+    border-radius: 4px;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: right;
+    padding: 5px 10px;
+}
+
+.full-width {
+    margin: 0 auto;
+    width: calc(100% - 40px) !important;
+}
+
+.center {
+    text-align: center;
+}
+
+.main-header {
+    border-bottom: 1px solid #4472c4;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.menu {
+    margin: 0;
+    padding: 0;
+}
+
+.menu__list-item {
+    display: inline-block;
+    font-size: 24px;
+    height: 60px;
+    line-height: 60px;
+    list-style: none;
+    margin-left: 20px;
+}
+
+.menu__list-item a.active,
+a.menu__list-item--active {
+    color: #4472c4 !important;
+}
+
+.btn-transaction {
+    border-radius: 2px;
+    color: #FFF;
+    font-size: 14px;
+    padding: 0px 12px;
+}
+
+.btn-transaction--buy {
+    background-color: #70AD47;
+    border: 1px solid #507E32;
+}
+
+.btn-transaction--sell {
+    background-color: #C55A11;
+    border: 1px solid #AE5A21;
+}
+
+.stock-list,
+.stock-graph {
+    float: left;
+    margin: 0px 20px 60px;
+    width: calc(50% - 40px);
+}
+
+.stock-list__title {
+    font-size: 24px;
+    font-weight: normal;
+    height: 30px;
+    line-height: 30px;
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.stock-list__btn {
+    border-radius: 50%;
+    color: #FFF;
+    display: inline-block;
+    font-weight: bold;
+    height: 20px;
+    line-height: 18px;
+    text-align: center;
+    width: 20px;
+}
+
+.stock-list__btn--add {
+    background-color: #70AD47;
+}
+
+.stock-list__btn--remove {
+    background-color: #C00000;
+}
+
+.stock-list__grid {
+    display: table;
+}
+
+.stock-list__grid-row {
+    display: table-row;
+    height: 35px;
+    line-height: 35px;
+}
+
+.stock-list__grid-cell {
+    display: table-cell;
+    font-size: 18px;
+    width: 70px;
+}
+
+.stock-list__grid-cell:nth-of-type(1) {
+    width: 50px;
+}
+
+.stock-list__grid-cell:nth-of-type(3),
+.stock-list__grid-cell:nth-of-type(5),
+.stock-list__grid-cell--txt-blue {
+    color: #4472c4;
+}
+
+.stock-graph__container {
+    height: 400px;
+    margin: 0 auto;
+    min-width: 310px;
+}
+
+.highcharts-exporting-group,
+.highcharts-credits {
+    display: none;
+    visibility: hidden;
+}
+
+.stock-transactions {
+    display: table;
+}
+
+.stock-transactions__grid-row {
+    display: table-row;
+    height: 35px;
+    line-height: 35px;
+}
+
+.stock-transactions__grid-row:nth-of-type(even) {
+    background-color: #CBCBCB;
+
+}
+
+.stock-transactions__grid-row:nth-of-type(odd) {
+    background-color: #E7E7E7;
+}
+
+.stock-transactions__grid-row:nth-of-type(1) {
+    background-color: #000000;
+}
+
+.stock-transactions__grid-cell {
+    border-bottom: 1px solid #FFFFFF;
+    border-right: 1px solid #FFFFFF;
+    display: table-cell;
+    font-size: 18px;
+    width: 175px;
+}
+
+.stock-transactions__grid-row:nth-of-type(1)>.stock-transactions__grid-cell {
+    border-bottom: 3px solid #FFFFFF;
+}
+
+.stock-transactions__grid-text {
+    margin-left: 5px;
+}
+
+.stock-transactions__grid-text--white {
+    color: #FFFFFF;
+    font-weight: bold;
+}
