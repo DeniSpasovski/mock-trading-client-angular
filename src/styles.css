@@ -267,6 +267,14 @@ a.menu__list-item--active {
     width: 175px;
 }
 
+.stock-transactions__grid-cell .sell {
+    color: red;
+}
+
+.stock-transactions__grid-cell .buy {
+    color: green;
+}
+
 .stock-transactions__grid-row:nth-of-type(1)>.stock-transactions__grid-cell {
     border-bottom: 3px solid #FFFFFF;
 }

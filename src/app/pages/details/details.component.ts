@@ -7,7 +7,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
-  selectedSymbol: any;
+  selectedSymbol: string;
   constructor(private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit() {
