@@ -7,13 +7,15 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
-  selectedSymbol: any;
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  selectedSymbol: string = '';
+  constructor(private route: ActivatedRoute, private router: Router) {
+    this.selectedSymbol = '';
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe((params) => {
       if (params.get('symbol')) {
-        this.selectedSymbol = params.get('symbol')?.toUpperCase();
+        this.selectedSymbol = params.get('symbol')?.toUpperCase() || '';
       } else {
         this.router.navigateByUrl('details/aapl');
       }
