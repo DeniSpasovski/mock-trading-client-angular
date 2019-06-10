@@ -1,0 +1,107 @@
+<section class="stock-list">
+  <h2 class="stock-list__title">
+    Stocks that I follow <a><span class="stock-list__btn stock-list__btn--add">&#43;</span></a>
+  </h2>
+  <div class="modal">
+    <div class="modal__overlay"></div>
+    <div class="modal__content">
+      <div class="modal__close">x</div>
+      <h2 class="modal__h2">Select a new stock to follow</h2>
+      <select class="modal__dropdown">
+        <option value="AMZN">Amazon</option>
+        <option value="DSNY">Disney</option>
+        <option value="HULU">Hulu</option>
+        <option value="NTFLX">Netflix</option>
+      </select>
+
+      <button class="modal__btn">Add</button>
+    </div>
+  </div>
+  <div class="stock-list__grid">
+    <div class="stock-list__grid-row">
+      <div class="stock-list__grid-cell">
+        <a><span class="stock-list__btn stock-list__btn--remove">&ndash;</span></a>
+      </div>
+      <div class="stock-list__grid-cell">AAPL</div>
+      <div class="stock-list__grid-cell">253.4</div>
+      <div class="stock-list__grid-cell">
+        <a><span class="btn-transaction btn-transaction--buy">buy</span></a>
+      </div>
+      <div class="stock-list__grid-cell">
+        <a><span class="btn-transaction btn-transaction--sell">sell</span></a>
+      </div>
+      <div class="stock-list__grid-cell">35</div>
+    </div>
+    <div class="stock-list__grid-row">
+      <div class="stock-list__grid-cell">
+        <a><span class="stock-list__btn stock-list__btn--remove">&ndash;</span></a>
+      </div>
+      <div class="stock-list__grid-cell">MSFT</div>
+      <div class="stock-list__grid-cell">456</div>
+      <div class="stock-list__grid-cell">
+        <a><span class="btn-transaction btn-transaction--buy">buy</span></a>
+      </div>
+    </div>
+    <div class="stock-list__grid-row">
+      <div class="stock-list__grid-cell">
+        <a><span class="stock-list__btn stock-list__btn--remove">&ndash;</span></a>
+      </div>
+      <div class="stock-list__grid-cell">GOOG</div>
+      <div class="stock-list__grid-cell">1005.3</div>
+      <div class="stock-list__grid-cell">
+        <a><span class="btn-transaction btn-transaction--buy">buy</span></a>
+      </div>
+      <div class="stock-list__grid-cell">
+        <a><span class="btn-transaction btn-transaction--sell">sell</span></a>
+      </div>
+      <div class="stock-list__grid-cell">12</div>
+    </div>
+  </div>
+</section>
+<section class="stock-graph">
+  <div id="stockGraphContainer" class="stock-graph__container"></div>
+</section>
+<section class="stock-transactions full-width">
+  <div class="stock-transactions__grid-row">
+    <div class="stock-transactions__grid-cell">
+      <span class="stock-transactions__grid-text stock-transactions__grid-text--white">Transaction ID</span>
+    </div>
+    <div class="stock-transactions__grid-cell">
+      <span class="stock-transactions__grid-text stock-transactions__grid-text--white">stock</span>
+    </div>
+    <div class="stock-transactions__grid-cell">
+      <span class="stock-transactions__grid-text stock-transactions__grid-text--white">amount</span>
+    </div>
+    <div class="stock-transactions__grid-cell">
+      <span class="stock-transactions__grid-text stock-transactions__grid-text--white">price</span>
+    </div>
+    <div class="stock-transactions__grid-cell">
+      <span class="stock-transactions__grid-text stock-transactions__grid-text--white">total</span>
+    </div>
+    <div class="stock-transactions__grid-cell"></div>
+  </div>
+  <div class="stock-transactions__grid-row">
+    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">tr1</span></div>
+    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">AAPL</span></div>
+    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">1</span></div>
+    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">256</span></div>
+    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">256</span></div>
+    <div class="stock-transactions__grid-cell"></div>
+  </div>
+  <div class="stock-transactions__grid-row">
+    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">tr2</span></div>
+    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">GOOG</span></div>
+    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">5</span></div>
+    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">1001</span></div>
+    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">5005</span></div>
+    <div class="stock-transactions__grid-cell"></div>
+  </div>
+  <div class="stock-transactions__grid-row">
+    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">tr3</span></div>
+    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">AAPL</span></div>
+    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">10</span></div>
+    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">245</span></div>
+    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">2450</span></div>
+    <div class="stock-transactions__grid-cell"></div>
+  </div>
+</section>
