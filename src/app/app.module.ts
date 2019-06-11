@@ -11,8 +11,12 @@ import { TransactionGridComponent } from './components/transaction-grid/transact
 import { AssetsGridComponent } from './components/assets-grid/assets-grid.component';
 import { StockDetailsComponent } from './components/stock-details/stock-details.component';
 import { StockGraphComponent } from './components/stock-graph/stock-graph.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './services/TokenInterceptor';
+import { FollowStocksPopupComponent } from './components/follow-stocks-popup/follow-stocks-popup.component';
 
 @NgModule({
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   declarations: [
     AppComponent,
     HomeComponent,
@@ -23,9 +27,15 @@ import { StockGraphComponent } from './components/stock-graph/stock-graph.compon
     AssetsGridComponent,
     StockDetailsComponent,
     StockGraphComponent,
+    FollowStocksPopupComponent
   ],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
