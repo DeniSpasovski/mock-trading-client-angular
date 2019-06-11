@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-stock-details',
@@ -13,9 +14,25 @@ export class StockDetailsComponent implements OnInit {
   currentPrice?: number = undefined;
   amount?: number = undefined;
 
-  constructor() {}
+  constructor(private userService: UserService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.fetchData();
+  }
+
+  fetchData() {
+    let result = this.userService.getAllocationsForAsset(this.symbol);
+    if (result.data) {
+      this.amount = result.data.amount;
+    }
+    result.subscription.subscribe((data) => {
+      if (data) {
+        this.amount = data.amount;
+      } else {
+        this.amount = undefined;
+      }
+    });
+  }
 
   onRemove() {
     this.removeClick.emit(this.symbol);

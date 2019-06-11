@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { DetailsComponent } from './details.component';
 import { StockDetailsComponent } from 'src/app/components/stock-details/stock-details.component';
@@ -13,7 +14,7 @@ describe('DetailsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [DetailsComponent, StockDetailsComponent, StockGraphComponent, TransactionGridComponent],
-      imports: [RouterModule.forRoot([])]
+      imports: [HttpClientTestingModule, RouterModule.forRoot([])]
     }).compileComponents();
   }));
 
