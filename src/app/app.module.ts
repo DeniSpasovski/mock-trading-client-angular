@@ -11,6 +11,9 @@ import { TransactionGridComponent } from './components/transaction-grid/transact
 import { AssetsGridComponent } from './components/assets-grid/assets-grid.component';
 import { StockDetailsComponent } from './components/stock-details/stock-details.component';
 import { StockGraphComponent } from './components/stock-graph/stock-graph.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenInterceptor } from './services/TokenInterceptor';
+import { FollowStocksPopupComponent } from './components/follow-stocks-popup/follow-stocks-popup.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,6 +24,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
+  imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule],
   declarations: [
     AppComponent,
     HomeComponent,
@@ -30,10 +34,16 @@ const routes: Routes = [
     TransactionGridComponent,
     AssetsGridComponent,
     StockDetailsComponent,
-    StockGraphComponent
+    StockGraphComponent,
+    FollowStocksPopupComponent
   ],
-  imports: [BrowserModule, RouterModule.forRoot(routes)],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

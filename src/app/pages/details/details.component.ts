@@ -15,7 +15,7 @@ export class DetailsComponent implements OnInit {
       if (params.get('symbol')) {
         this.selectedSymbol = params.get('symbol').toUpperCase();
       } else {
-        this.router.navigateByUrl('details/aapl');
+        this.router.navigateByUrl('details/acme');
       }
     });
   }
