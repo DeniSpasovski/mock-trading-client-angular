@@ -1,0 +1,12 @@
+<div class="modal visible">
+  <div class="modal__overlay"></div>
+  <div class="modal__content">
+    <div class="modal__close">x</div>
+    <h2 class="modal__h2">Select a new stock to follow</h2>
+    <select class="modal__dropdown" (change)="onChange($event)">
+      <option *ngFor="let stockInfo of stockList" [value]="stockInfo.symbol">{{ stockInfo.name }}</option>
+    </select>
+
+    <button class="modal__btn" (click)="onFollowClick()">Add</button>
+  </div>
+</div>

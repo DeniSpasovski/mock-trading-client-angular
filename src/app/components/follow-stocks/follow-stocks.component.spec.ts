@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { FollowStocksComponent } from './follow-stocks.component';
+import { StockDetailsComponent } from '../stock-details/stock-details.component';
+import { FollowStocksPopupComponent } from '../follow-stocks-popup/follow-stocks-popup.component';
+import { UserService } from 'src/app/services/user.service';
 
 describe('FollowStocksComponent', () => {
   let component: FollowStocksComponent;
@@ -8,9 +12,10 @@ describe('FollowStocksComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FollowStocksComponent ]
-    })
-    .compileComponents();
+      declarations: [FollowStocksComponent, StockDetailsComponent, FollowStocksPopupComponent],
+      providers: [UserService],
+      imports: [HttpClientTestingModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

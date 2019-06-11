@@ -1,12 +1,17 @@
 <div class="stock-list__grid-row">
-  <div class="stock-list__grid-cell stock-list__grid-cell--txt-blue">&#x25BC;</div>
+  <div *ngIf="showRemove" class="stock-list__grid-cell">
+    <a (click)="onRemove()"><span class="stock-list__btn stock-list__btn--remove">&ndash;</span></a>
+  </div>
+  <div *ngIf="!showRemove" class="stock-list__grid-cell stock-list__grid-cell--txt-blue">&#x25BC;</div>
   <div class="stock-list__grid-cell">{{ symbol }}</div>
-  <div class="stock-list__grid-cell">253.4</div>
+  <div class="stock-list__grid-cell">{{ currentPrice ? currentPrice.toFixed(3) : '-' }}</div>
   <div class="stock-list__grid-cell">
     <a><span class="btn-transaction btn-transaction--buy">buy</span></a>
   </div>
-  <div class="stock-list__grid-cell">
-    <a><span class="btn-transaction btn-transaction--sell">sell</span></a>
-  </div>
-  <div class="stock-list__grid-cell">35</div>
+  <ng-template *ngIf="amount">
+    <div class="stock-list__grid-cell">
+      <a><span class="btn-transaction btn-transaction--sell">sell</span></a>
+    </div>
+    <div class="stock-list__grid-cell">{{ amount }}</div>
+  </ng-template>
 </div>

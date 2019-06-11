@@ -36,6 +36,10 @@ a:active {
     z-index: 100;
 }
 
+.modal.visible {
+    display: block;
+}
+
 .modal__overlay {
     background-color: #333333;
     bottom: 0;
