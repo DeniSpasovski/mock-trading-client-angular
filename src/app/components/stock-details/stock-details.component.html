@@ -8,10 +8,10 @@
   <div class="stock-list__grid-cell">
     <a><span class="btn-transaction btn-transaction--buy">buy</span></a>
   </div>
-  <ng-template *ngIf="amount">
+  <ng-container *ngIf="amount">
     <div class="stock-list__grid-cell">
       <a><span class="btn-transaction btn-transaction--sell">sell</span></a>
     </div>
     <div class="stock-list__grid-cell">{{ amount }}</div>
-  </ng-template>
+  </ng-container>
 </div>
