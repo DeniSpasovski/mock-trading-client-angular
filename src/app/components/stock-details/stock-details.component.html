@@ -3,15 +3,20 @@
     <a (click)="onRemove()"><span class="stock-list__btn stock-list__btn--remove">&ndash;</span></a>
   </div>
   <div *ngIf="!showRemove" class="stock-list__grid-cell stock-list__grid-cell--txt-blue">&#x25BC;</div>
-  <div class="stock-list__grid-cell">{{ symbol }}</div>
-  <div class="stock-list__grid-cell">{{ currentPrice ? currentPrice.toFixed(3) : '-' }}</div>
+  <div class="stock-list__grid-cell" (click)="onStockClick(symbol)">{{ symbol }}</div>
+  <div class="stock-list__grid-cell stock-list__grid-cell--txt-blue wide">{{ currentPrice ? currentPrice.toFixed(3) : '-' }}</div>
   <div class="stock-list__grid-cell">
-    <a><span class="btn-transaction btn-transaction--buy">buy</span></a>
+    <a><span class="btn-transaction btn-transaction--buy" (click)="openBuySellPopup('buy')">buy</span></a>
   </div>
   <ng-container *ngIf="amount">
     <div class="stock-list__grid-cell">
-      <a><span class="btn-transaction btn-transaction--sell">sell</span></a>
+      <a><span class="btn-transaction btn-transaction--sell" (click)="openBuySellPopup('sell')">sell</span></a>
     </div>
-    <div class="stock-list__grid-cell">{{ amount }}</div>
+    <div class="stock-list__grid-cell stock-list__grid-cell--txt-blue">{{ amount }}</div>
   </ng-container>
 </div>
+<app-buy-sell-popup
+  *ngIf="buySellVisible"
+  (transactionClick)="onTransaction($event)"
+  [transactionInfo]="transactionInfo"
+></app-buy-sell-popup>

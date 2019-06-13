@@ -68,8 +68,8 @@ a:active {
 }
 
 .modal__content--large {
-    left: calc(50% - 120px);
-    width: 240px;
+    left: calc(50% - 150px);
+    width: 300px;
 }
 
 .modal__close {
@@ -96,6 +96,7 @@ a:active {
 .modal__dropdown {
     margin-top: 3px;
     padding: 1px;
+    max-width: 140px;
 }
 
 .modal__number-box {
@@ -114,6 +115,10 @@ a:active {
     cursor: pointer;
     float: right;
     padding: 5px 10px;
+}
+
+.modal__btn.sell {
+    background-color: #C55A11;
 }
 
 .full-width {
@@ -218,12 +223,14 @@ a.menu__list-item--active {
     width: 70px;
 }
 
+.stock-list__grid-cell.wide {
+    padding-right: 10px;
+}
+
 .stock-list__grid-cell:nth-of-type(1) {
     width: 50px;
 }
 
-.stock-list__grid-cell:nth-of-type(3),
-.stock-list__grid-cell:nth-of-type(5),
 .stock-list__grid-cell--txt-blue {
     color: #4472c4;
 }

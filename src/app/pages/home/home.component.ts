@@ -6,9 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  selectedSymbol: string = 'AAPL';
+  selectedSymbol: string = 'STRK';
 
   constructor() {}
 
   ngOnInit() {}
+
+  onStockSelected(symbol) {
+    this.selectedSymbol = symbol;
+  }
 }

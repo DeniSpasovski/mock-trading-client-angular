@@ -1,3 +1,3 @@
-<app-follow-stocks></app-follow-stocks>
+<app-follow-stocks (stockSelected)="onStockSelected($event)"></app-follow-stocks>
 <app-stock-graph [symbol]="selectedSymbol"></app-stock-graph>
 <app-transaction-grid></app-transaction-grid>
