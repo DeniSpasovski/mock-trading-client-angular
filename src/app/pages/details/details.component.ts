@@ -19,4 +19,8 @@ export class DetailsComponent implements OnInit {
       }
     });
   }
+
+  onStockSelected(symbol) {
+    this.selectedSymbol = symbol;
+  }
 }

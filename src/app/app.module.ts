@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -11,9 +13,9 @@ import { TransactionGridComponent } from './components/transaction-grid/transact
 import { AssetsGridComponent } from './components/assets-grid/assets-grid.component';
 import { StockDetailsComponent } from './components/stock-details/stock-details.component';
 import { StockGraphComponent } from './components/stock-graph/stock-graph.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './services/TokenInterceptor';
 import { FollowStocksPopupComponent } from './components/follow-stocks-popup/follow-stocks-popup.component';
+import { BuySellPopupComponent } from './components/buy-sell-popup/buy-sell-popup.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -24,7 +26,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule],
+  imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule, FormsModule],
   declarations: [
     AppComponent,
     HomeComponent,
@@ -35,7 +37,8 @@ const routes: Routes = [
     AssetsGridComponent,
     StockDetailsComponent,
     StockGraphComponent,
-    FollowStocksPopupComponent
+    FollowStocksPopupComponent,
+    BuySellPopupComponent
   ],
   providers: [
     {
