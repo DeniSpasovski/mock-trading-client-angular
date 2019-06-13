@@ -30,11 +30,7 @@ export class UserService {
     if (!this.allocations) {
       this.allocations = [];
       this.http.get(this.allocationsUrl).subscribe((data) => {
-        this.allocations = data;
-        this.allocationsSubscription.next({
-          isInit: true,
-          data: this.allocations
-        });
+        this.updateAllocations(data);
       });
     }
 
@@ -42,6 +38,14 @@ export class UserService {
       subscription: this.allocationsSubscription,
       data: this.allocations
     };
+  }
+
+  updateAllocations(data:any) {
+    this.allocations = data;
+    this.allocationsSubscription.next({
+      isInit: true,
+      data: this.allocations
+    });
   }
 
   /**
@@ -101,5 +105,5 @@ export class UserService {
 
   getUserId() {
     return localStorage['userId'];
-}
+  }
 }

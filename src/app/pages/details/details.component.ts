@@ -21,4 +21,8 @@ export class DetailsComponent implements OnInit {
       }
     });
   }
+
+  onStockSelected(symbol:string) {
+    this.selectedSymbol = symbol;
+  }
 }

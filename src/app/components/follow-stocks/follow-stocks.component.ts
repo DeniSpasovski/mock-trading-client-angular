@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -7,6 +7,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./follow-stocks.component.css']
 })
 export class FollowStocksComponent implements OnInit {
+  @Output() stockSelected: EventEmitter<any> = new EventEmitter();
+
   followList: Array<any> = [];
   stockList: Array<any> = [];
   followPopupOpen: boolean = false;
@@ -36,5 +38,10 @@ export class FollowStocksComponent implements OnInit {
     this.userService.getWatchList().subscribe((data) => {
       this.followList = data;
     });
+  }
+
+  onStockSelected(symbol: string) {
+    console.log('event - stock selected', symbol);
+    this.stockSelected.next(symbol);
   }
 }

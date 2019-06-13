@@ -1,23 +1,40 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 import { UserService } from 'src/app/services/user.service';
+import { StocksService } from 'src/app/services/stocks.service';
+import { TransactionInfo } from '../../models/transactionInfo';
 
 @Component({
   selector: 'app-stock-details',
   templateUrl: './stock-details.component.html',
   styleUrls: ['./stock-details.component.css']
 })
-export class StockDetailsComponent implements OnInit {
+export class StockDetailsComponent implements OnInit, OnDestroy {
   @Output() removeClick = new EventEmitter<string>();
   @Input() showRemove: boolean = false;
   @Input() symbol: string = '';
+  @Output() stockSelected: EventEmitter<any> = new EventEmitter();
 
+  private trash = new Subject();
   currentPrice?: number = undefined;
   amount?: number = undefined;
+  //allocationSubscription: Observable<any>;
+  //priceSubscription: Observable<any>;
+  buySellVisible: boolean = false;
+  transactionInfo: any;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private stockService: StocksService) {}
 
   ngOnInit() {
     this.fetchData();
+  }
+
+  ngOnDestroy() {
+    this.trash.next();
+    this.trash.complete();
+    this.stockService.unsubscribeStockPrice(this.symbol);
   }
 
   fetchData() {
@@ -25,16 +42,42 @@ export class StockDetailsComponent implements OnInit {
     if (result.data) {
       this.amount = result.data.amount;
     }
-    result.subscription.subscribe((data) => {
+
+    result.subscription.pipe(takeUntil(this.trash)).subscribe((data) => {
       if (data) {
         this.amount = data.amount;
       } else {
         this.amount = undefined;
       }
     });
+
+    this.stockService
+      .getStockPriceSubscription(this.symbol)
+      .pipe(takeUntil(this.trash))
+      .subscribe((data) => {
+        if (data) {
+          this.currentPrice = data.price;
+        } else {
+          this.currentPrice = undefined;
+        }
+      });
   }
 
   onRemove() {
     this.removeClick.emit(this.symbol);
+  }
+
+  onStockClick(symbol:any) {
+    console.log('event - stock selected', symbol);
+    this.stockSelected.next(symbol);
+  }
+
+  onTransaction() {
+    this.buySellVisible = false;
+  }
+
+  openBuySellPopup(side: string) {
+    this.transactionInfo = new TransactionInfo(side, this.symbol, 10);
+    this.buySellVisible = true;
   }
 }

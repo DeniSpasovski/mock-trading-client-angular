@@ -30,4 +30,8 @@ export class FollowStocksPopupComponent implements OnInit {
       this.followClick.emit(this.selectedSymbol);
     });
   }
+
+  onClose() {
+    this.followClick.emit();
+  }
 }

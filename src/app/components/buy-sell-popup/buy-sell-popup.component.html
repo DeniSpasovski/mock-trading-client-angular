@@ -1,0 +1,21 @@
+<div class="modal modal__buy" style="display: block;">
+  <div class="modal__overlay"></div>
+  <div class="modal__content modal__content--large">
+    <div class="modal__close" (click)="onClose()">x</div>
+    <h2 class="modal__h2">Buy stock</h2>
+    <select class="modal__dropdown" [(ngModel)]="_transactionInfo.symbol">
+      <option *ngFor="let stockInfo of stockList" [value]="stockInfo.symbol">{{ stockInfo.name }}</option>
+    </select>
+    <input
+      #quant
+      class="modal__number-box"
+      type="number"
+      name="quantity"
+      placeholder="enter amount"
+      [(ngModel)]="_transactionInfo.amount"
+    />
+    <button class="modal__btn" [class.sell]="_transactionInfo?.side === 'SELL'" (click)="onBuySellClick()">
+      {{ _transactionInfo.side }}
+    </button>
+  </div>
+</div>

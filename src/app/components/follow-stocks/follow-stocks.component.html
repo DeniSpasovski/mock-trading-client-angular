@@ -8,6 +8,7 @@
       class="stock-list__grid-row"
       *ngFor="let stock of followList; trackBy: trackByFn"
       (removeClick)="onRemoveClick($event)"
+      (stockSelected)="onStockSelected($event)"
       [symbol]="stock.symbol"
       [showRemove]="true"
     ></app-stock-details>
