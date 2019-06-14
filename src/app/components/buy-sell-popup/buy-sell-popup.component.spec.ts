@@ -22,7 +22,7 @@ describe('BuySellPopupComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BuySellPopupComponent);
     component = fixture.componentInstance;
-    component.transactionInfo = new TransactionInfo('BUY', 'ACME', 1);
+    component.transactionInfo = new TransactionInfo({ side: 'BUY', symbol: 'ACME', amount: 1 });
     fixture.detectChanges();
   });
 

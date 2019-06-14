@@ -14,7 +14,7 @@ export class ConnectivityService {
   async connect() {
     if (!this.nesClient) {
       this.nesClient = new Nes.Client(environment.webSocketUrl);
-      this.nesClient.connect();
+      await this.nesClient.connect();
     }
 
     return this.nesClient;

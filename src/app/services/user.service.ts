@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { map as rxMap, filter as rxFilter } from 'rxjs/operators';
+import { map as rxMap, filter as rxFilter, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { StockInfo } from '../models/stock';
+import { allocationUpdate, AllocationInfo } from '../models/allocations';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private allocations;
-  private allocationsSubscription = new Subject<any>();
-  get watchListUrl() {
+  private allocations: Array<AllocationInfo>;
+  private allocationsSubscription = new Subject<allocationUpdate>();
+  get watchListUrl(): string {
     return environment.serverUrl + 'userdata/watchlist';
   }
 
-  get allocationsUrl() {
+  get allocationsUrl(): string {
     return environment.serverUrl + 'userdata/allocations';
   }
 
@@ -26,11 +28,11 @@ export class UserService {
    * @returns
    * @memberof UserService
    */
-  getAllocations(): { data: Array<any>; subscription: Subject<any> } {
-    if (!this.allocations) {
-      this.allocations = [];
-      this.http.get(this.allocationsUrl).subscribe((data) => {
-        this.updateAllocations(data);
+  getAllocations(isInit: boolean = false): { data: Array<AllocationInfo>; subscription: Subject<allocationUpdate> } {
+    if (!this.allocations || isInit) {
+      this.allocations = this.allocations || [];
+      this.http.get(this.allocationsUrl).subscribe((data: Array<AllocationInfo>) => {
+        this.updateAllocations(data, true);
       });
     }
 
@@ -40,10 +42,11 @@ export class UserService {
     };
   }
 
-  updateAllocations(data) {
+  updateAllocations(data: Array<AllocationInfo>, isInit: boolean, symbol?: string) {
     this.allocations = data;
     this.allocationsSubscription.next({
-      isInit: true,
+      isInit: isInit,
+      symbol: symbol,
       data: this.allocations
     });
   }
@@ -55,7 +58,7 @@ export class UserService {
    * @returns
    * @memberof UserService
    */
-  getAllocationsForAsset(symbol): { data: any; subscription: Observable<any> } {
+  getAllocationsForAsset(symbol): { data: AllocationInfo; subscription: Observable<AllocationInfo> } {
     let subscription = this.getAllocations().subscription.pipe(
       rxFilter((response: any) => {
         return response.isInit || response.symbol === symbol;
@@ -69,15 +72,19 @@ export class UserService {
     };
   }
 
-  mapSingleAssetFromList(list, symbol) {
+  mapSingleAssetFromList(list: Array<AllocationInfo>, symbol: string): AllocationInfo {
     return list.find((x) => x.symbol === symbol);
   }
 
-  getWatchList(): Observable<Array<any>> {
-    return this.http.get(this.watchListUrl) as Observable<Array<any>>;
+  getWatchList(): Observable<Array<StockInfo>> {
+    return this.http.get(this.watchListUrl).pipe(
+      map((x: Array<StockInfo>) => {
+        return x.map((s) => new StockInfo(s));
+      })
+    );
   }
 
-  addToWatchList(symbol: any) {
+  addToWatchList(symbol: string): Observable<string> {
     return this.http.post(
       this.watchListUrl,
       {
@@ -90,7 +97,7 @@ export class UserService {
     );
   }
 
-  removeFromWatchList(symbol: any) {
+  removeFromWatchList(symbol: string): Observable<string> {
     return this.http.post(
       this.watchListUrl,
       {
@@ -101,9 +108,5 @@ export class UserService {
         responseType: 'text'
       }
     );
-  }
-
-  getUserId() {
-    return localStorage['userId'];
   }
 }

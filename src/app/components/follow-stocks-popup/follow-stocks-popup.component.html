@@ -4,7 +4,9 @@
     <div class="modal__close" (click)="onClose()">x</div>
     <h2 class="modal__h2">Select a new stock to follow</h2>
     <select class="modal__dropdown" (change)="onChange($event.target.value)">
-      <option *ngFor="let stockInfo of stockList" [value]="stockInfo.symbol">{{ stockInfo.name }}</option>
+      <option *ngFor="let stockInfo of stockList" [value]="stockInfo.symbol" [disabled]="isSymbolInWatchList(stockInfo.symbol)">
+        {{ stockInfo.name }}
+      </option>
     </select>
 
     <button class="modal__btn" (click)="onFollowClick()">Add</button>
