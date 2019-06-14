@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { StocksService } from 'src/app/services/stocks.service';
 import { TransactionInfo } from '../../models/transactionInfo';
 import { TransactionService } from 'src/app/services/transaction.service';
+import { StockInfo } from 'src/app/models/stock';
 
 @Component({
   selector: 'app-buy-sell-popup',
@@ -15,21 +16,21 @@ export class BuySellPopupComponent implements OnInit {
   }
 
   _transactionInfo!: TransactionInfo;
-  stockList: any[] = [];
+  stockList: Array<StockInfo> = [];
 
   constructor(private stockService: StocksService, private transactionService: TransactionService) {}
 
   ngOnInit() {
-    this.stockService.getStockList().subscribe((data) => {
+    this.stockService.getStockList().subscribe((data: StockInfo[]) => {
       this.stockList = data;
     });
   }
 
-  onChange(symbol: any) {
+  onChange(symbol: string) {
     this._transactionInfo.symbol = symbol;
   }
 
-  amountChange(value:number) {
+  amountChange(value: number) {
     this._transactionInfo.amount = value;
   }
 

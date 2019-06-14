@@ -1,10 +1,17 @@
 export class TransactionInfo {
-  side: string;
   amount: number;
+  cost?: number;
+  date?: Date;
+  side: string;
   symbol: string;
-  constructor(side: string, symbol: string, amount: number) {
-    this.side = side.toUpperCase();
-    this.symbol = symbol;
-    this.amount = amount;
+  tickPrice: number;
+
+  constructor(data: any) {
+    this.side = data.side.toUpperCase();
+    this.symbol = data.symbol;
+    this.amount = data.amount;
+    this.cost = data.cost;
+    this.date = data.date ? new Date(data.date) : undefined;
+    this.tickPrice = data.tickPrice;
   }
 }

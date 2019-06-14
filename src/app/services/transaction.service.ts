@@ -24,7 +24,7 @@ export class TransactionService {
       .toPromise()
       .then((response: { transaction: any; allocations: Array<any>; liquidity: number }) => {
         this.addTransaction(response.transaction);
-        this.userService.updateAllocations(response.allocations);
+        this.userService.updateAllocations(response.allocations, false, response.transaction.symbol);
       });
   }
 
@@ -32,7 +32,7 @@ export class TransactionService {
     if (this.transactions) {
       this.transactions.push(transaction);
       this.transactionSubscription.next({
-        isInit: true,
+        symbol: transaction.symbol,
         data: this.transactions
       });
     }
