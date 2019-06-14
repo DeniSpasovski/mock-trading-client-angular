@@ -5,6 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
 import { StocksService } from 'src/app/services/stocks.service';
 import { TransactionInfo } from '../../models/transactionInfo';
+import { StockTick } from 'src/app/models/stock';
 
 @Component({
   selector: 'app-stock-details',
@@ -54,9 +55,9 @@ export class StockDetailsComponent implements OnInit, OnDestroy {
     this.stockService
       .getStockPriceSubscription(this.symbol)
       .pipe(takeUntil(this.trash))
-      .subscribe((data) => {
-        if (data) {
-          this.currentPrice = data.price;
+      .subscribe((tick: StockTick) => {
+        if (tick) {
+          this.currentPrice = tick.price;
         } else {
           this.currentPrice = null;
         }
@@ -77,7 +78,7 @@ export class StockDetailsComponent implements OnInit, OnDestroy {
   }
 
   openBuySellPopup(side: string) {
-    this.transactionInfo = new TransactionInfo(side, this.symbol, 10);
+    this.transactionInfo = new TransactionInfo({ side: side, symbol: this.symbol, amount: 10 });
     this.buySellVisible = true;
   }
 }
