@@ -11,6 +11,7 @@ import { FollowStocksPopupComponent } from 'src/app/components/follow-stocks-pop
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BuySellPopupComponent } from 'src/app/components/buy-sell-popup/buy-sell-popup.component';
 import { FormsModule } from '@angular/forms';
+import { AgGridModule } from 'ag-grid-angular';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -27,7 +28,7 @@ describe('HomeComponent', () => {
         StockGraphComponent,
         TransactionGridComponent
       ],
-      imports: [HttpClientTestingModule, FormsModule],
+      imports: [HttpClientTestingModule, FormsModule, AgGridModule.withComponents([])],
       providers: [StocksService, UserService]
     }).compileComponents();
   }));

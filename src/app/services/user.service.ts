@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { map as rxMap, filter as rxFilter, map } from 'rxjs/operators';
+import { map as rxMap, filter as rxFilter } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { StockInfo } from '../models/stock';
 import { allocationUpdate, AllocationInfo } from '../models/allocations';
@@ -78,7 +78,7 @@ export class UserService {
 
   getWatchList(): Observable<Array<StockInfo>> {
     return this.http.get(this.watchListUrl).pipe(
-      map((x: Array<StockInfo>) => {
+      rxMap((x: Array<StockInfo>) => {
         return x.map((s) => new StockInfo(s));
       })
     );

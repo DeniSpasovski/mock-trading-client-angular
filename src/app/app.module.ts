@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AgGridModule } from 'ag-grid-angular';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -26,7 +27,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule, FormsModule],
+  imports: [BrowserModule, RouterModule.forRoot(routes), HttpClientModule, FormsModule, AgGridModule.withComponents([])],
   declarations: [
     AppComponent,
     HomeComponent,
