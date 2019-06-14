@@ -8,6 +8,7 @@ import { TransactionGridComponent } from 'src/app/components/transaction-grid/tr
 import { StockGraphComponent } from 'src/app/components/stock-graph/stock-graph.component';
 import { FormsModule } from '@angular/forms';
 import { BuySellPopupComponent } from 'src/app/components/buy-sell-popup/buy-sell-popup.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 describe('DetailsComponent', () => {
   let component: DetailsComponent;
@@ -16,7 +17,12 @@ describe('DetailsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [DetailsComponent, StockDetailsComponent, StockGraphComponent, TransactionGridComponent, BuySellPopupComponent],
-      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([{ path: '*', component: DetailsComponent }]), FormsModule]
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule.withRoutes([{ path: '*', component: DetailsComponent }]),
+        FormsModule,
+        AgGridModule.withComponents([])
+      ]
     }).compileComponents();
   }));
 

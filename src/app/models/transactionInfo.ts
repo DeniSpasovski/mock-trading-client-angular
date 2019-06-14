@@ -15,3 +15,9 @@ export class TransactionInfo {
     this.tickPrice = data.tickPrice;
   }
 }
+
+export class TransactionUpdate {
+  isInit: boolean = false;
+  symbol?: string;
+  data: Array<TransactionInfo> = [];
+}
