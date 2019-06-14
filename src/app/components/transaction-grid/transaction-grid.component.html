@@ -1,46 +1,4 @@
 <section class="stock-transactions full-width">
-  <div class="stock-transactions__grid-row">
-    <div class="stock-transactions__grid-cell">
-      <span class="stock-transactions__grid-text stock-transactions__grid-text--white">Transaction ID</span>
-    </div>
-    <div class="stock-transactions__grid-cell">
-      <span class="stock-transactions__grid-text stock-transactions__grid-text--white">stock</span>
-    </div>
-    <div class="stock-transactions__grid-cell">
-      <span class="stock-transactions__grid-text stock-transactions__grid-text--white">amount</span>
-    </div>
-    <div class="stock-transactions__grid-cell">
-      <span class="stock-transactions__grid-text stock-transactions__grid-text--white">direction</span>
-    </div>
-    <div class="stock-transactions__grid-cell">
-      <span class="stock-transactions__grid-text stock-transactions__grid-text--white">price</span>
-    </div>
-    <div class="stock-transactions__grid-cell">
-      <span class="stock-transactions__grid-text stock-transactions__grid-text--white">total</span>
-    </div>
-  </div>
-  <div class="stock-transactions__grid-row">
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">tr3</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">AAPL</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">1</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text sell">SELL</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">256</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">256</span></div>
-  </div>
-  <div class="stock-transactions__grid-row">
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">tr2</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">GOOG</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">5</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text buy">BUY</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">1001</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">5005</span></div>
-  </div>
-  <div class="stock-transactions__grid-row">
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">tr1</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">AAPL</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">10</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text buy">BUY</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">245</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">2450</span></div>
-  </div>
+  <ag-grid-angular #agGrid style="height: 350px; " class="ag-theme-balham" [rowData]="transactions" [columnDefs]="columnDefs">
+  </ag-grid-angular>
 </section>

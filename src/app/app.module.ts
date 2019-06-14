@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AgGridModule } from 'ag-grid-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,7 +19,13 @@ import { FollowStocksPopupComponent } from './components/follow-stocks-popup/fol
 import { BuySellPopupComponent } from './components/buy-sell-popup/buy-sell-popup.component';
 
 @NgModule({
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    AgGridModule.withComponents([]),
+  ],
   declarations: [
     AppComponent,
     HomeComponent,
@@ -30,14 +37,14 @@ import { BuySellPopupComponent } from './components/buy-sell-popup/buy-sell-popu
     StockDetailsComponent,
     StockGraphComponent,
     FollowStocksPopupComponent,
-    BuySellPopupComponent
+    BuySellPopupComponent,
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })
