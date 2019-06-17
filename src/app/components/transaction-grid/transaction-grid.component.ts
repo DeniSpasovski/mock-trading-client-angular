@@ -4,6 +4,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { AgGridAngular } from 'ag-grid-angular';
 import { AgGridCellValueFormatters } from './ag-grid-value-formatters';
+import { TransactionInfo } from 'src/app/models/transactionInfo';
 
 @Component({
   selector: 'app-transaction-grid',
@@ -23,7 +24,7 @@ export class TransactionGridComponent implements OnInit, OnDestroy, AfterViewIni
     { headerName: 'Price', field: 'tickPrice', valueFormatter: AgGridCellValueFormatters.priceFormatter, decimalPlaces: 4 },
     { headerName: 'Total', field: 'cost', valueFormatter: AgGridCellValueFormatters.priceFormatter, decimalPlaces: 2 }
   ];
-  transactions: any;
+  transactions: Array<TransactionInfo>;
   constructor(private transactionService: TransactionService) {}
 
   ngAfterViewInit() {

@@ -19,8 +19,3 @@ export class StockInfo {
     this.lastTick = data.lastTick ? new StockTick(data.lastTick) : null;
   }
 }
-
-export class AllocationInfo {
-  amount: number;
-  symbol: string;
-}
