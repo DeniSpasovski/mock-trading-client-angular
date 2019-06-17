@@ -1,42 +1,15 @@
 <section class="stock-transactions full-width">
-  <div class="stock-transactions__grid-row">
-    <div class="stock-transactions__grid-cell">
-      <span class="stock-transactions__grid-text stock-transactions__grid-text--white">stock</span>
-    </div>
-    <div class="stock-transactions__grid-cell">
-      <span class="stock-transactions__grid-text stock-transactions__grid-text--white">amount</span>
-    </div>
-    <div class="stock-transactions__grid-cell">
-      <span class="stock-transactions__grid-text stock-transactions__grid-text--white">current price</span>
-    </div>
-    <div class="stock-transactions__grid-cell">
-      <span class="stock-transactions__grid-text stock-transactions__grid-text--white">total</span>
-    </div>
-    <div class="stock-transactions__grid-cell"></div>
-  </div>
-  <div class="stock-transactions__grid-row">
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">AAPL</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">35</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">253.4</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">8869</span></div>
-    <div class="stock-transactions__grid-cell center">
-      <a><span class="btn-transaction btn-transaction--sell">sell</span></a>
-    </div>
-  </div>
-  <div class="stock-transactions__grid-row">
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">GOOG</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">12</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">1005.3</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">12063.6</span></div>
-    <div class="stock-transactions__grid-cell center">
-      <a><span class="btn-transaction btn-transaction--sell">sell</span></a>
-    </div>
-  </div>
-  <div class="stock-transactions__grid-row">
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">Liquidity</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">100000</span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text"></span></div>
-    <div class="stock-transactions__grid-cell"><span class="stock-transactions__grid-text">100000</span></div>
-    <div class="stock-transactions__grid-cell center"></div>
-  </div>
+  <ag-grid-angular 
+    style="height: 350px; " 
+    class="ag-theme-balham" 
+    [rowData]="assets" 
+    (gridReady)="onGridReady($event)"
+    [modules]="gridModules">
+    <ag-grid-column headerName="Stock" field="symbol"></ag-grid-column>
+    <ag-grid-column headerName="Amount" field="amount"></ag-grid-column>
+
+    <ag-grid-column headerName="Current Price" field="lastTick.price" [valueFormatter]="priceFormatter"></ag-grid-column>
+    <ag-grid-column headerName="Total" field="total" [valueFormatter]="priceFormatter"></ag-grid-column>
+    <ag-grid-column headerName="Sell"><button>Sell</button></ag-grid-column>
+  </ag-grid-angular>
 </section>

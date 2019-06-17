@@ -1,4 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { AgGridModule } from '@ag-grid-community/angular';
 
 import { AssetsComponent } from './assets.component';
 import { AssetsGridComponent } from 'src/app/components/assets-grid/assets-grid.component';
@@ -9,7 +11,8 @@ describe('AssetsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AssetsComponent, AssetsGridComponent]
+      declarations: [AssetsComponent, AssetsGridComponent],
+      imports: [HttpClientTestingModule, AgGridModule.withComponents([])]
     }).compileComponents();
   }));
 

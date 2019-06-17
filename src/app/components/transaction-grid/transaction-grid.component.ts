@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
-import { TransactionService } from 'src/app/services/transaction.service';
+import { Component, OnInit, Input, OnDestroy, AfterViewInit } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { AgGridAngular } from '@ag-grid-community/angular';
-import { AgGridCellValueFormatters } from './ag-grid-value-formatters';
-import {ClientSideRowModelModule} from '@ag-grid-community/client-side-row-model';
+import { ClientSideRowModelModule } from '@ag-grid-community/client-side-row-model';
 import { GridApi, GridReadyEvent } from '@ag-grid-community/core';
+
+import { TransactionService } from 'src/app/services/transaction.service';
+import { AgGridCellValueFormatters } from './ag-grid-value-formatters';
+import { TransactionInfo } from 'src/app/models/transactionInfo';
 
 @Component({
   selector: 'app-transaction-grid',
@@ -25,13 +26,13 @@ export class TransactionGridComponent implements OnInit, OnDestroy, AfterViewIni
     { headerName: 'Price', field: 'tickPrice', valueFormatter: AgGridCellValueFormatters.priceFormatter, decimalPlaces: 4 },
     { headerName: 'Total', field: 'cost', valueFormatter: AgGridCellValueFormatters.priceFormatter, decimalPlaces: 2 }
   ];
-  transactions: any;
+  transactions: Array<TransactionInfo> = [];
   gridApi?: GridApi;
   constructor(private transactionService: TransactionService) {}
 
   ngAfterViewInit() {
     
-  }
+    }
 
   ngOnInit() {
     this.fetchData();

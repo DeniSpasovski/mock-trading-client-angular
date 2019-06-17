@@ -4,7 +4,7 @@ import { TransactionInfo, TransactionUpdate } from '../models/transactionInfo';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { UserService } from './user.service';
-import { map as rxMap, filter as rxFilter } from 'rxjs/internal/operators';
+import { map as rxMap, filter as rxFilter } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { AgGridModule } from '@ag-grid-community/angular';
 
 import { TransactionGridComponent } from './transaction-grid.component';
-import { AgGridModule } from 'ag-grid-angular';
 import { TransactionService } from 'src/app/services/transaction.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TransactionGridComponent', () => {
   let component: TransactionGridComponent;

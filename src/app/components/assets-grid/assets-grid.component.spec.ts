@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AssetsGridComponent } from './assets-grid.component';
+import { TransactionService } from 'src/app/services/transaction.service';
+import { UserService } from 'src/app/services/user.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { AgGridModule } from '@ag-grid-community/angular';
 
 describe('AssetsGridComponent', () => {
   let component: AssetsGridComponent;
@@ -8,9 +12,10 @@ describe('AssetsGridComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AssetsGridComponent ]
-    })
-    .compileComponents();
+      declarations: [AssetsGridComponent],
+      providers: [TransactionService, UserService],
+      imports: [HttpClientTestingModule, AgGridModule.withComponents([])]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
