@@ -31,7 +31,7 @@ export class UserService {
   getAllocations(isInit: boolean = false): { data: Array<AllocationInfo>; subscription: Subject<allocationUpdate> } {
     if (!this.allocations || isInit) {
       this.allocations = this.allocations || [];
-      this.http.get(this.allocationsUrl).subscribe((data: Array<AllocationInfo>) => {
+      this.fetchAllocations().subscribe((data: Array<AllocationInfo>) => {
         this.updateAllocations(data, true);
       });
     }
@@ -40,6 +40,10 @@ export class UserService {
       subscription: this.allocationsSubscription,
       data: this.allocations
     };
+  }
+
+  fetchAllocations(): Observable<Array<AllocationInfo>> {
+    return this.http.get<Array<AllocationInfo>>(this.allocationsUrl);
   }
 
   updateAllocations(data: Array<AllocationInfo>, isInit: boolean, symbol?: string) {
@@ -77,11 +81,7 @@ export class UserService {
   }
 
   getWatchList(): Observable<Array<StockInfo>> {
-    return this.http.get(this.watchListUrl).pipe(
-      rxMap((x: Array<StockInfo>) => {
-        return x.map((s) => new StockInfo(s));
-      })
-    );
+    return this.http.get<Array<StockInfo>>(this.watchListUrl);
   }
 
   addToWatchList(symbol: string): Observable<string> {
