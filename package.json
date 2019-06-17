@@ -6,7 +6,7 @@
     "start": "ng serve",
     "prod": "ng serve --prod --aot",
     "build": "ng build --prod --aot && npm run package",
-    "package": "cd dist && bestzip app-package.zip mock-trading-server-angular/*",
+    "package": "cd dist/mock-trading-server-angular && bestzip ../app-package.zip *",
     "run-test": "ng test",
     "test": "ng test --watch=false --codeCoverage=true",
     "lint": "ng lint",

@@ -3,7 +3,7 @@ import { environment } from '../../environments/environment';
 import { Observable, Subject, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ConnectivityService } from './connectivity.service';
-import { StockInfo, StockTick } from '../models/stock';
+import { StockInfo, StockTick, StockDataPeriod, StockDataResponse } from '../models/stock';
 import { map } from 'rxjs/internal/operators/map';
 
 @Injectable({
@@ -14,6 +14,10 @@ export class StocksService {
     return environment.serverUrl + 'stocks';
   }
 
+  getHistoricDataUrl(symbol: string, period: StockDataPeriod): string {
+    return environment.serverUrl + `stocks/${symbol}/price/${StockDataPeriod[period]}`;
+  }
+
   constructor(private http: HttpClient, private connection: ConnectivityService) {}
 
   getStockList(): Observable<Array<StockInfo>> {
@@ -22,6 +26,10 @@ export class StocksService {
         return x.map((s) => new StockInfo(s));
       })
     );
+  }
+
+  getHistoricStockData(symbol: string, period: StockDataPeriod) {
+    return this.http.get(this.getHistoricDataUrl(symbol, period)).pipe(map((x: StockDataResponse) => new StockDataResponse(x)));
   }
 
   getStockPriceSubscription(symbol) {

@@ -12,6 +12,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { BuySellPopupComponent } from 'src/app/components/buy-sell-popup/buy-sell-popup.component';
 import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
+import { Router } from '@angular/router';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -19,6 +21,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [
         HomeComponent,
         FollowStocksComponent,
@@ -29,7 +32,18 @@ describe('HomeComponent', () => {
         TransactionGridComponent
       ],
       imports: [HttpClientTestingModule, FormsModule, AgGridModule.withComponents([])],
-      providers: [StocksService, UserService]
+      providers: [
+        StocksService,
+        UserService,
+        {
+          provide: Router,
+          UseValue: {
+            navigateByUrl(url: string) {
+              return url;
+            }
+          }
+        }
+      ]
     }).compileComponents();
   }));
 

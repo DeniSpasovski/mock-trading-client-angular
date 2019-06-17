@@ -1,4 +1,10 @@
 <section class="stock-graph">
-  {{ symbol }}
+  <h2 class="stock-list__title">
+    Symbol: <i>{{ symbol }}</i> Period:
+    <select class="modal__dropdown" (change)="onPeriodSelected($event.target.value)">
+      <option *ngFor="let period of dataPeriods" [value]="period">{{ period }}</option>
+    </select>
+    <a *ngIf="showDetailsLink" [routerLink]="'/details/' + symbol" class="stock-graph__link">details</a>
+  </h2>
   <div id="stockGraphContainer" class="stock-graph__container"></div>
 </section>

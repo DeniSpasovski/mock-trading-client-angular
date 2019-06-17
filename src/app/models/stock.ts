@@ -19,3 +19,17 @@ export class StockInfo {
     this.lastTick = data.lastTick ? new StockTick(data.lastTick) : null;
   }
 }
+
+export class StockDataResponse {
+  constructor(data) {
+    this.aggregated = data.aggregated;
+    this.detailed = data.detailed;
+  }
+  aggregated: Array<StockTick>;
+  detailed: Array<StockTick>;
+}
+
+export enum StockDataPeriod {
+  yearly,
+  today
+}
