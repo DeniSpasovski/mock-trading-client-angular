@@ -20,4 +20,16 @@ export class StockInfo {
   }
 }
 
+export class StockDataResponse {
+  constructor(data:any) {
+    this.aggregated = data.aggregated;
+    this.detailed = data.detailed;
+  }
+  aggregated: Array<StockTick>;
+  detailed: Array<StockTick>;
+}
 
+export enum StockDataPeriod {
+  yearly,
+  today
+}

@@ -178,7 +178,7 @@ a.menu__list-item--active {
 .stock-list,
 .stock-graph {
     float: left;
-    margin: 0px 20px 60px;
+    margin: 0px 20px 20px;
     width: calc(50% - 40px);
 }
 
@@ -244,6 +244,10 @@ a.menu__list-item--active {
     min-width: 310px;
 }
 
+.stock-graph__link {
+    float: right;
+}
+
 .highcharts-exporting-group,
 .highcharts-credits {
     display: none;
@@ -300,4 +304,29 @@ a.menu__list-item--active {
 .stock-transactions__grid-text--white {
     color: #FFFFFF;
     font-weight: bold;
+}
+
+app-details .stock-list,
+app-details .stock-graph {
+    float: none;
+    margin: 0px;
+    width: calc(100% - 20px);
+}
+
+@media (max-width: 1024px) {
+
+    app-home .stock-list,
+    app-home .stock-graph {
+        float: none;
+        width: calc(100% - 20px);
+    }
+}
+
+@media (min-width: 800px) {
+    app-details .stock-graph .stock-list__title {
+        position: absolute;
+        right: 0;
+        margin-right: 60px;
+        margin-top: -35px;
+    }
 }

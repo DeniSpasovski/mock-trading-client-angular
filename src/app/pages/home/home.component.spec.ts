@@ -2,6 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { FormsModule } from '@angular/forms';
 import { AgGridModule } from '@ag-grid-community/angular';
+import { Router } from '@angular/router';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { HomeComponent } from './home.component';
 import { FollowStocksComponent } from 'src/app/components/follow-stocks/follow-stocks.component';
@@ -19,6 +21,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [
         HomeComponent,
         FollowStocksComponent,
@@ -29,7 +32,18 @@ describe('HomeComponent', () => {
         TransactionGridComponent
       ],
       imports: [HttpClientTestingModule, FormsModule, AgGridModule.withComponents([])],
-      providers: [StocksService, UserService]
+      providers: [
+        StocksService,
+        UserService,
+        {
+          provide: Router,
+          UseValue: {
+            navigateByUrl(url: string) {
+              return url;
+            }
+          }
+        }
+      ]
     }).compileComponents();
   }));
 

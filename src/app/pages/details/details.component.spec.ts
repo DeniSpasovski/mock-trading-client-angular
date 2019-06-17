@@ -9,6 +9,7 @@ import { TransactionGridComponent } from 'src/app/components/transaction-grid/tr
 import { StockGraphComponent } from 'src/app/components/stock-graph/stock-graph.component';
 import { FormsModule } from '@angular/forms';
 import { BuySellPopupComponent } from 'src/app/components/buy-sell-popup/buy-sell-popup.component';
+import { StocksService } from 'src/app/services/stocks.service';
 
 describe('DetailsComponent', () => {
   let component: DetailsComponent;
@@ -22,6 +23,9 @@ describe('DetailsComponent', () => {
         RouterTestingModule.withRoutes([{ path: '*', component: DetailsComponent }]),
         FormsModule,
         AgGridModule.withComponents([])
+      ], 
+      providers: [
+        StocksService
       ]
     }).compileComponents();
   }));

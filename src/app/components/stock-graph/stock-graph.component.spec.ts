@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { StockGraphComponent } from './stock-graph.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('StockGraphComponent', () => {
   let component: StockGraphComponent;
@@ -8,9 +10,10 @@ describe('StockGraphComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StockGraphComponent ]
-    })
-    .compileComponents();
+      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [StockGraphComponent],
+      imports: [HttpClientTestingModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

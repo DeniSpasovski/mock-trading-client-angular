@@ -9,7 +9,7 @@
     "prod": "ng serve --prod --aot",
     "build": "ng build --aot && npm run package",
     "watch": "ng build --watch --configuration development",
-    "package": "cd dist && bestzip app-package.zip mock-trading-server-angular/*",
+    "package": "cd dist/mock-trading-client-angular && bestzip ../app-package.zip *",
     "run-test": "ng test",
     "test": "ng test --watch=false --codeCoverage=true"
   },

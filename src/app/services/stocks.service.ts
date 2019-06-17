@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Observable, Subject, of } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ConnectivityService } from './connectivity.service';
-import { StockInfo, StockTick } from '../models/stock';
+import { StockInfo, StockTick, StockDataPeriod, StockDataResponse } from '../models/stock';
 import { map as rxMap } from 'rxjs/operators';
 
 @Injectable({
@@ -12,6 +12,10 @@ import { map as rxMap } from 'rxjs/operators';
 export class StocksService {
   get stockListUrl(): string {
     return environment.serverUrl + 'stocks';
+  }
+
+  getHistoricDataUrl(symbol: string, period: StockDataPeriod): string {
+    return environment.serverUrl + `stocks/${symbol}/price/${StockDataPeriod[period]}`;
   }
 
   constructor(private http: HttpClient, private connection: ConnectivityService) {}
@@ -24,10 +28,14 @@ export class StocksService {
     );
   }
 
+  getHistoricStockData(symbol: string, period: StockDataPeriod) {
+    return this.http.get<StockDataResponse>(this.getHistoricDataUrl(symbol, period)).pipe(rxMap((x: StockDataResponse) => new StockDataResponse(x)));
+  }
+
   getStockPriceSubscription(symbol: string) {
     let priceSubscription = new Subject<StockTick>();
     this.connection.connect().then((client) => {
-      client.subscribe('/livestream/' + symbol, (update:any) => {
+      client.subscribe('/livestream/' + symbol, (update: any) => {
         priceSubscription.next(new StockTick(update));
       });
     });
