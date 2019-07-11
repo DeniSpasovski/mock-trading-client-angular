@@ -1,6 +1,8 @@
 {
   "name": "mock-trading-client-angular",
   "version": "0.0.0",
+  "description": "Mock Trading Client Angular",
+  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
